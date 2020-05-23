@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - include_tasks: ansible-tasks/apt.yml
+    - include_tasks: ansible-tasks/autorecon.yml
+    - include_tasks: ansible-tasks/enum4linuxpy.yml
+    - include_tasks: ansible-tasks/searchsploit.yml

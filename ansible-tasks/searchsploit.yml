@@ -1,0 +1,5 @@
+- name: Update exploitdb
+  shell: searchsploit -u
+  register: searchsploitupdate
+  changed_when: searchsploitupdate.rc == 6
+  failed_when: searchsploitupdate.rc not in [0,6]

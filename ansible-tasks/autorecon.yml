@@ -1,0 +1,44 @@
+---
+- name: Dependencies
+  apt:
+    pkg:
+      - git
+      - python3-pip
+      - seclists
+      - curl
+      - gobuster
+      - nbtscan
+      - nikto
+      - nmap
+      - onesixtyone
+      - oscanner
+      - smbclient
+      - smbmap
+      - smtp-user-enum
+      - snmp
+      - sslscan
+      - sipvicious
+      - tnscmd10g
+      - whatweb
+      - wkhtmltopdf
+
+- name: Clone
+  git:
+    repo: https://github.com/Tib3rius/AutoRecon
+    dest: /opt/autorecon
+    update: yes 
+    force: yes
+
+- name: Install
+  pip: 
+    executable: pip3
+    requirements: /opt/autorecon/requirements.txt
+
+- name: Link autorecon
+  file:
+    src: /opt/autorecon/src/autorecon/autorecon.py
+    dest: /usr/local/bin/autorecon
+    owner: root
+    group: root
+    state: link
+      

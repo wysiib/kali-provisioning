@@ -1,0 +1,30 @@
+---
+- name: Dependencies
+  apt:
+    pkg:
+      - git
+
+- name: Remove obsolete enum4linux package
+  apt:
+    name: enum4linux
+    state: absent
+
+- name: Clone
+  git:
+    repo: https://github.com/0v3rride/Enum4LinuxPy
+    dest: /opt/Enum4LinuxPy
+    update: yes 
+    force: yes
+
+- name: Install
+  pip: 
+    executable: pip3
+    requirements: /opt/Enum4LinuxPy/requirements.txt
+
+- name: Link enum4linuxpy
+  file:
+    src: /opt/Enum4LinuxPy/Enum4LinuxPy.py
+    dest: /usr/local/bin/enum4linux
+    owner: root
+    group: root
+    state: link
